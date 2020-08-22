@@ -1,4 +1,13 @@
 $(document).ready(function () {
+
+    let today = (moment().format('dddd, MMMM Do YYYY'))
+    console.log(today)
+    let currentHour = (moment().format('h a'))
+    console.log(currentHour)
+    // displays current day at top of page
+    $('#currentDay').html(today)
+
+
     let hours = [{ 'hour': '9 am', 'text': 'textbox' },
     { 'hour': '10 am' },
     { 'hour': '11 am' }]
