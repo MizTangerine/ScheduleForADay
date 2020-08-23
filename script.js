@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    let today = (moment().format('dddd, MMMM Do YYYY'))
+    let today = (moment().format('dddd, MMMM Do YYYY, h:mm a'))
     console.log(today)
     let currentHour = (moment().format('h a'))
     let currentHrMil = (moment().format('HH'))
@@ -11,15 +11,15 @@ $(document).ready(function () {
 
     let timeBlk = [
         { 'milHr': '09', 'hour': '09', 'amPm': 'am', 'event': '' },
+        { 'milHr': '10', 'hour': '10', 'amPm': 'am', 'event': '' },
         { 'milHr': '11', 'hour': '11', 'amPm': 'am', 'event': '' },
+        { 'milHr': '12', 'hour': '12', 'amPm': 'pm', 'event': '' },
         { 'milHr': '13', 'hour': '01', 'amPm': 'pm', 'event': '' },
+        { 'milHr': '14', 'hour': '02', 'amPm': 'pm', 'event': '' },
+        { 'milHr': '15', 'hour': '03', 'amPm': 'pm', 'event': '' },
+        { 'milHr': '16', 'hour': '04', 'amPm': 'pm', 'event': '' },
         { 'milHr': '17', 'hour': '05', 'amPm': 'pm', 'event': '' },
-        { 'milHr': '20', 'hour': '08', 'amPm': 'pm', 'event': '' },
-        { 'milHr': '21', 'hour': '09', 'amPm': 'pm', 'event': '' },
-        { 'milHr': '22', 'hour': '10', 'amPm': 'pm', 'event': '' },
-        { 'milHr': '23', 'hour': '11', 'amPm': 'pm', 'event': '' },
-
-        // { 'hour': '10 am', 'text': 'textbox' },
+        { 'milHr': '18', 'hour': '06', 'amPm': 'pm', 'event': '' },
     ]
 
     // ***Render to Page****
@@ -42,10 +42,12 @@ $(document).ready(function () {
         //create event text area
         let eventEl = $('<input>').attr({
             class: 'col-11 description',
-            id: timeBlk.milHr
+            id: eventHr.milHr
         });
-        let eventText = eventEl.val().trim()
-        // text(timeBlk[i].event)
+        // let eventText = eventEl.val().trim()
+        // console.log(eventText)
+        // eventHr.event.push(eventText)
+        // let eventText = text(timeBlk[i].event)
 
         newRow.append(hourEl, eventEl);
 
@@ -53,7 +55,7 @@ $(document).ready(function () {
         // ***check for past, present, future hour***
 
         let checkHr = timeBlk[i].milHr
-        console.log(checkHr)
+        // console.log(checkHr)
         if (checkHr < currentHrMil) {
             eventEl.addClass('past')
         } else if (checkHr === currentHrMil) {
@@ -65,6 +67,10 @@ $(document).ready(function () {
 
     //***event listener on save btn ***
 
+    $('.saveBtn').on('click', function () {
+        // event.preventDefault()
+        saveState()
+    })
 
     //***local storage
     function saveState() {
@@ -78,6 +84,4 @@ $(document).ready(function () {
     }
     getState()
 
-
 })
-
